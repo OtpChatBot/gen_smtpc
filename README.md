@@ -11,7 +11,7 @@ Add `gen_smtpc` to your `rebar.config`:
 ```erlang
 %% Dependencies
 {deps, [
-   {lager, "0.1", {git, "git://github.com/0xAX/gen_smtpc.git", "master"}}
+   {gen_smtpc, "*", {git, "git://github.com/0xAX/gen_smtpc.git", "master"}}
    ]
 }.
 ```
