@@ -1,7 +1,7 @@
 gen_smtpc
 =============
 
-`gen_smtpc` - is a RFC-5321 compatible smtp client for erlang.
+`gen_smtpc` - is very simple smtp client for erlang.
 
 Usage
 --------------
