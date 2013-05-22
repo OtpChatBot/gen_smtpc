@@ -1,0 +1,12 @@
+{application, gen_smtpc,
+ [
+  {description, "Erlang smtp client"},
+  {vsn, "0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { gen_smtpc_app, []}},
+  {env, []}
+ ]}.
