@@ -112,7 +112,7 @@ send_mail(From, FromPassword, To, Subject, Body, Ssl, Host, Port, State) ->
     % Connect to smtp server
     case Ssl:connect(Host, Port, Opts) of
         {ok, Socket} ->
-            Ssl:send(Socket, "HELO\r\n"),
+            Ssl:send(Socket, ["HELO ", proplists:get_value(hostname, Opts, guess_FQDN()), "\r\n"]),
             Ssl:send(Socket, "AUTH LOGIN\r\n"),
             timer:sleep(2000),
             Ssl:send(Socket, binary_to_list(base64:encode(From)) ++ "\r\n"),
@@ -147,3 +147,9 @@ send_mail(From, FromPassword, To, Subject, Body, Ssl, Host, Port, State) ->
             io:format("ERROR: ~p~n", [Error]),
             {noreply, State}
     end.
+    
+guess_FQDN() ->
+    {ok, Hostname} = inet:gethostname(),
+    {ok, Hostent} = inet:gethostbyname(Hostname),
+    {hostent, FQDN, _Aliases, inet, _, _Addresses} = Hostent,
+    FQDN.
